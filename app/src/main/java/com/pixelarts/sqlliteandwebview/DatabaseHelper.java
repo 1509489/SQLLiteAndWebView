@@ -19,6 +19,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final  String TABLE_NAME = "Contacts";
     public static final String CONTACT_NAME = "Name";
     public static final String CONTACT_NUMBER = "Number";
+    public static final String CONTACT_AGE = "Age";
+    public static final String CONTACT_GENDER = "Gender";
+    public static final String CONTACT_FAVORITE_ANIMAL = "FavoriteAnimal";
 
     public DatabaseHelper(Context context)
     {
@@ -28,7 +31,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
 
-        String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + CONTACT_NAME + " TEXT,"+ CONTACT_NUMBER + " TEXT PRIMARY KEY" + ")";
+        String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + CONTACT_NAME + " TEXT,"+ CONTACT_NUMBER + " TEXT PRIMARY KEY," +
+                CONTACT_AGE + " TEXT," + CONTACT_GENDER + " TEXT," + CONTACT_FAVORITE_ANIMAL + " TEXT" + ")";
         sqLiteDatabase.execSQL(CREATE_TABLE);
 
     }
@@ -47,6 +51,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ContentValues contentValues = new ContentValues();
         contentValues.put(CONTACT_NAME, contacts.getName());
         contentValues.put(CONTACT_NUMBER, contacts.getNumber());
+        contentValues.put(CONTACT_AGE, contacts.getAge());
+        contentValues.put(CONTACT_GENDER, contacts.getGender());
+        contentValues.put(CONTACT_FAVORITE_ANIMAL, contacts.getFavoriteAnimal());
         database.insert(TABLE_NAME, null, contentValues);
         Log.d(TAG, "saveContact");
 
@@ -63,7 +70,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         {
             do
             {
-                Contacts contact = new Contacts(cursor.getString(0), cursor.getString(1));
+                Contacts contact = new Contacts(cursor.getString(0), cursor.getString(1),
+                        cursor.getString(2), cursor.getString(3), cursor.getString(4));
                 contacts.add(contact);
             }while (cursor.moveToNext());
         }
