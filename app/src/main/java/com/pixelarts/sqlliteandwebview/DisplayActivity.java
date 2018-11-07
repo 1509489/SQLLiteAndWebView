@@ -38,7 +38,7 @@ public class DisplayActivity extends AppCompatActivity implements View.OnClickLi
         tvNumber2 = findViewById(R.id.tvNumber2);
         tvNumber3 = findViewById(R.id.tvNumber3);
         tvNumber4 = findViewById(R.id.tvNumber4);
-        tvNumber5 = findViewById(R.id.tvName5);
+        tvNumber5 = findViewById(R.id.tvNumber5);
 
         //Binding age text views
         tvAge1 = findViewById(R.id.tvAge1);
